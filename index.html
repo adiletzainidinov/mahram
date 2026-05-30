@@ -1,46 +1,56 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ky">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Знай, кто тебе махрам — руководство по родственным связям в исламе">
-  <title>Знай, кто тебе махрам</title>
+  <meta name="description" content="Махрам жана намахрам — исламдагы туугандык жана шарияттык чек аралар">
+  <title>Махрам жана намахрам</title>
   <style>
-    /* ============================================================
-       RESET & BASE
-       ============================================================ */
+    /* ==========================================================
+       RESET
+       ========================================================== */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    /* ==========================================================
+       CSS VARIABLES
+       ========================================================== */
     :root {
-      --green:       #70b49b;
-      --green-lt:    #e8f5ef;
-      --green-dk:    #3d7a60;
-      --green-mid:   #4a8c72;
+      --green:        #70b49b;
+      --green-lt:     #e8f5ef;
+      --green-dk:     #3d7a60;
+      --green-mid:    #4a8c72;
 
-      --red:         #e76f61;
-      --red-lt:      #fdecea;
-      --red-dk:      #b84135;
+      --red:          #e76f61;
+      --red-lt:       #fdecea;
+      --red-dk:       #b84135;
 
-      --bg:          #f7f1e8;
-      --card:        #ffffff;
-      --text:        #263238;
-      --muted:       #607d8b;
-      --border:      #ece6dc;
+      --gold:         #d97706;
+      --gold-lt:      #fef3c7;
+      --gold-border:  #f59e0b;
 
-      --radius-xl:   24px;
-      --radius-lg:   20px;
-      --radius-md:   12px;
-      --radius-full: 9999px;
+      --bg:           #f7f1e8;
+      --card:         #ffffff;
+      --text:         #263238;
+      --muted:        #607d8b;
+      --border:       #ece6dc;
 
-      --shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.06);
-      --shadow-md:   0 4px 20px rgba(0, 0, 0, 0.09);
-      --shadow-lg:   0 10px 40px rgba(0, 0, 0, 0.13);
+      --radius-xl:    24px;
+      --radius-lg:    20px;
+      --radius-md:    12px;
+      --radius-full:  9999px;
+
+      --shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.06);
+      --shadow-md:    0 4px 20px rgba(0, 0, 0, 0.09);
+      --shadow-lg:    0 10px 40px rgba(0, 0, 0, 0.14);
     }
 
+    /* ==========================================================
+       BASE
+       ========================================================== */
     html {
       font-size: 16px;
       -webkit-text-size-adjust: 100%;
@@ -54,11 +64,26 @@
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* ============================================================
+    /* ==========================================================
+       ARABIC TEXT
+       ========================================================== */
+    .arabic {
+      direction: rtl;
+      text-align: right;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      line-height: 1.9;
+      font-size: 18px;
+      font-family: 'Arial', 'Segoe UI', sans-serif;
+      color: #5c4a1e;
+    }
+
+    /* ==========================================================
        HERO
-       ============================================================ */
+       ========================================================== */
     .hero {
       position: relative;
       background: linear-gradient(145deg, var(--green-dk) 0%, var(--green) 55%, #91cdb8 100%);
@@ -74,40 +99,34 @@
     }
 
     .hero__circle--1 {
-      width: 240px;
-      height: 240px;
-      top: -70px;
-      right: -70px;
+      width: 240px; height: 240px;
+      top: -70px; right: -70px;
       background: rgba(255, 255, 255, 0.09);
     }
 
     .hero__circle--2 {
-      width: 170px;
-      height: 170px;
-      bottom: -70px;
-      left: -50px;
+      width: 170px; height: 170px;
+      bottom: -70px; left: -50px;
       background: rgba(255, 255, 255, 0.06);
     }
 
     .hero__circle--3 {
-      width: 90px;
-      height: 90px;
-      top: 30px;
-      left: 20px;
+      width: 90px; height: 90px;
+      top: 30px; left: 20px;
       background: rgba(255, 255, 255, 0.05);
     }
 
     .hero__inner {
       position: relative;
       z-index: 1;
-      max-width: 520px;
+      max-width: 540px;
       margin: 0 auto;
     }
 
     .hero__title {
       font-size: 24px;
       font-weight: 800;
-      color: #ffffff;
+      color: #fff;
       line-height: 1.25;
       letter-spacing: -0.3px;
       margin-bottom: 14px;
@@ -117,13 +136,13 @@
       font-size: 14px;
       color: rgba(255, 255, 255, 0.88);
       line-height: 1.8;
-      max-width: 380px;
+      max-width: 420px;
       margin: 0 auto;
     }
 
-    /* ============================================================
+    /* ==========================================================
        MAIN LAYOUT
-       ============================================================ */
+       ========================================================== */
     .main {
       padding-bottom: 48px;
     }
@@ -134,9 +153,9 @@
       padding: 0 16px;
     }
 
-    /* ============================================================
-       SELF CARD
-       ============================================================ */
+    /* ==========================================================
+       SELF CARD ("Мен")
+       ========================================================== */
     .self-wrap {
       display: flex;
       justify-content: center;
@@ -151,12 +170,13 @@
       background: var(--card);
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow-lg);
-      padding: 22px 32px 18px;
+      padding: 22px 28px 18px;
       text-align: center;
       display: inline-flex;
       flex-direction: column;
       align-items: center;
-      min-width: 150px;
+      max-width: 300px;
+      width: 100%;
       border: 3px solid rgba(255, 255, 255, 0.9);
     }
 
@@ -169,81 +189,179 @@
     }
 
     .self-card__name {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
       color: var(--text);
-      letter-spacing: -0.5px;
+      letter-spacing: -0.4px;
+      margin-bottom: 10px;
+    }
+
+    .self-card__hint {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    /* ==========================================================
+       SECTION SPACING
+       ========================================================== */
+    .section {
+      margin-bottom: 24px;
+    }
+
+    /* ==========================================================
+       SECTION HEADING
+       ========================================================== */
+    .sec-head {
       margin-bottom: 14px;
     }
 
-    .self-card__tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .tag {
+    .sec-head__label {
       font-size: 11px;
       font-weight: 700;
-      padding: 4px 14px;
-      border-radius: var(--radius-full);
-      letter-spacing: 0.4px;
+      letter-spacing: 0.9px;
       text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3px;
     }
 
-    .tag--green {
-      background: var(--green-lt);
-      color: var(--green-mid);
+    .sec-head__title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.3;
     }
 
-    .tag--red {
-      background: var(--red-lt);
-      color: var(--red-dk);
+    /* ==========================================================
+       DEFINITION CARD
+       ========================================================== */
+    .def-card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 20px;
+      border-left: 5px solid var(--green);
     }
 
-    /* ============================================================
-       SECTIONS GRID
-       ============================================================ */
-    .grid {
+    .def-card--red {
+      border-left-color: var(--red);
+    }
+
+    .def-card__title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .def-card__icon {
+      font-size: 19px;
+      flex-shrink: 0;
+    }
+
+    .def-card__text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ==========================================================
+       DALIL GRID (Quran evidence cards)
+       ========================================================== */
+    .dalil-grid {
       display: flex;
       flex-direction: column;
       gap: 16px;
-      margin-bottom: 20px;
     }
 
-    /* ============================================================
-       CARD
-       ============================================================ */
-    .card {
+    .dalil-card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      border-top: 5px solid var(--gold-border);
+    }
+
+    .dalil-card__head {
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dalil-card__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dalil-card__title-icon {
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+
+    .dalil-card__subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .dalil-card__body {
+      padding: 16px 20px 20px;
+    }
+
+    .arabic-quote {
+      background: var(--gold-lt);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .dalil-card__explain {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ==========================================================
+       MAHRAM / NAMAHRAM LIST CARDS
+       ========================================================== */
+    .list-card {
       background: var(--card);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
       overflow: hidden;
     }
 
-    .card--mahram    { border-top: 5px solid var(--green); }
-    .card--not-mahram { border-top: 5px solid var(--red); }
+    .list-card--green { border-top: 5px solid var(--green); }
+    .list-card--red   { border-top: 5px solid var(--red); }
 
-    .card__head {
+    .list-card__head {
       padding: 18px 20px 14px;
       border-bottom: 1px solid var(--border);
     }
 
-    .card__head-top {
+    .list-card__head-top {
       display: flex;
       align-items: center;
       gap: 10px;
       margin-bottom: 4px;
     }
 
-    .card__title {
-      font-size: 18px;
+    .list-card__title {
+      font-size: 16px;
       font-weight: 700;
       color: var(--text);
     }
 
-    .card__subtitle {
+    .list-card__subtitle {
       font-size: 12px;
       color: var(--muted);
       padding-left: 22px;
@@ -260,10 +378,10 @@
     .dot--green { background: var(--green); }
     .dot--red   { background: var(--red); }
 
-    /* ============================================================
-       PERSON LIST
-       ============================================================ */
-    .list {
+    /* ==========================================================
+       PERSON LIST ITEMS
+       ========================================================== */
+    .person-list {
       list-style: none;
       padding: 8px 12px 12px;
       display: flex;
@@ -271,7 +389,7 @@
       gap: 2px;
     }
 
-    .list-item {
+    .person-item {
       display: flex;
       align-items: center;
       gap: 12px;
@@ -281,22 +399,12 @@
       cursor: default;
     }
 
-    .card--mahram    .list-item:hover { background-color: var(--green-lt); }
-    .card--not-mahram .list-item:hover { background-color: var(--red-lt); }
+    .list-card--green .person-item:hover { background-color: var(--green-lt); }
+    .list-card--red   .person-item:hover { background-color: var(--red-lt); }
 
-    .list-item--special {
-      background-color: rgba(112, 180, 155, 0.10);
-      border: 1px dashed rgba(112, 180, 155, 0.5);
-      margin-top: 4px;
-    }
-
-    .list-item--special:hover {
-      background-color: var(--green-lt) !important;
-    }
-
-    .avatar {
-      width: 40px;
-      height: 40px;
+    .person-avatar {
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -306,16 +414,16 @@
       line-height: 1;
     }
 
-    .avatar--green { background: var(--green-lt); }
-    .avatar--red   { background: var(--red-lt); }
+    .person-avatar--green { background: var(--green-lt); }
+    .person-avatar--red   { background: var(--red-lt); }
 
-    .list-item__body {
+    .person-body {
       display: flex;
       flex-direction: column;
       min-width: 0;
     }
 
-    .list-item__name {
+    .person-name {
       font-size: 14px;
       font-weight: 600;
       color: var(--text);
@@ -323,41 +431,73 @@
       word-break: break-word;
     }
 
-    .list-item__desc {
+    .person-desc {
       font-size: 11.5px;
       color: var(--muted);
       line-height: 1.45;
+      word-break: break-word;
     }
 
-    /* ============================================================
-       CARD NOTICE
-       ============================================================ */
-    .card__notice {
-      margin: 0 12px 12px;
-      padding: 10px 14px;
-      border-radius: var(--radius-md);
-      background: var(--red-lt);
+    /* ==========================================================
+       TWO-COLUMN MAHRAM GRID (tablet+)
+       ========================================================== */
+    .mahram-grid {
       display: flex;
-      gap: 10px;
-      align-items: flex-start;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 24px;
     }
 
-    .card__notice-icon {
-      font-size: 15px;
-      flex-shrink: 0;
-      margin-top: 1px;
+    .mahram-grid__col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
-    .card__notice-text {
-      font-size: 12px;
-      color: var(--red-dk);
-      line-height: 1.6;
+    /* ==========================================================
+       HADITH CARDS
+       ========================================================== */
+    .hadith-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hadith-card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 18px 20px;
+      border-left: 5px solid var(--gold-border);
+    }
+
+    .hadith-card__icon {
+      font-size: 22px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .hadith-card__text {
+      font-size: 14px;
       font-style: italic;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 10px;
     }
 
-    /* ============================================================
-       NOTE BLOCK ("Важно помнить")
-       ============================================================ */
+    .hadith-card__text::before { content: "«"; }
+    .hadith-card__text::after  { content: "»"; }
+
+    .hadith-card__ref {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.3px;
+    }
+
+    /* ==========================================================
+       NOTE BLOCK ("Эстеп жүр")
+       ========================================================== */
     .note {
       background: var(--card);
       border-radius: var(--radius-lg);
@@ -371,9 +511,9 @@
     }
 
     .note__icon {
-      font-size: 28px;
+      font-size: 26px;
       flex-shrink: 0;
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     .note__title {
@@ -389,9 +529,9 @@
       line-height: 1.8;
     }
 
-    /* ============================================================
+    /* ==========================================================
        LEGEND
-       ============================================================ */
+       ========================================================== */
     .legend {
       background: var(--card);
       border-radius: var(--radius-lg);
@@ -425,9 +565,9 @@
       color: var(--muted);
     }
 
-    /* ============================================================
+    /* ==========================================================
        FOOTER
-       ============================================================ */
+       ========================================================== */
     .footer {
       text-align: center;
       padding: 24px 20px;
@@ -437,19 +577,19 @@
       margin-top: 8px;
     }
 
-    /* ============================================================
+    /* ==========================================================
        RESPONSIVE — 600px
-       ============================================================ */
+       ========================================================== */
     @media (min-width: 600px) {
-      .hero__title        { font-size: 30px; }
-      .hero__desc         { font-size: 15px; }
-      .self-card          { padding: 24px 40px 20px; }
-      .self-card__avatar  { font-size: 64px; }
+      .hero__title { font-size: 30px; }
+      .hero__desc  { font-size: 15px; }
+      .self-card   { padding: 24px 36px 20px; }
+      .self-card__avatar { font-size: 64px; }
     }
 
-    /* ============================================================
-       RESPONSIVE — 768px (tablet)
-       ============================================================ */
+    /* ==========================================================
+       RESPONSIVE — 768px (tablet / desktop)
+       ========================================================== */
     @media (min-width: 768px) {
       .hero {
         padding: 68px 24px 110px;
@@ -462,7 +602,7 @@
 
       .hero__desc {
         font-size: 15px;
-        max-width: 480px;
+        max-width: 500px;
       }
 
       .self-wrap {
@@ -470,294 +610,519 @@
         margin-bottom: 36px;
       }
 
-      .grid {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 20px;
+      .container {
+        padding: 0 24px;
       }
 
-      .grid .card {
+      .dalil-grid {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .dalil-grid .dalil-card {
         flex: 1;
         min-width: 0;
       }
 
-      .container {
-        padding: 0 24px;
+      .mahram-grid {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .mahram-grid .mahram-grid__col {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .hadith-grid {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .hadith-grid .hadith-card {
+        flex: 1;
+        min-width: 0;
       }
     }
 
-    /* ============================================================
-       RESPONSIVE — 920px (desktop)
-       ============================================================ */
+    /* ==========================================================
+       RESPONSIVE — 920px (wide desktop)
+       ========================================================== */
     @media (min-width: 920px) {
-      .hero__title        { font-size: 40px; }
-      .self-wrap          { margin-top: -56px; }
-      .list-item__name    { font-size: 15px; }
-      .list-item__desc    { font-size: 12.5px; }
+      .hero__title { font-size: 40px; }
+      .self-wrap   { margin-top: -56px; }
+      .person-name { font-size: 15px; }
+      .person-desc { font-size: 12px; }
     }
 
-    /* ============================================================
-       SAFEGUARD — ниже 360px
-       ============================================================ */
+    /* ==========================================================
+       SAFEGUARD — ≤ 359px (очень маленький экран)
+       ========================================================== */
     @media (max-width: 359px) {
       .hero {
-        padding: 40px 14px 72px;
+        padding: 36px 12px 68px;
       }
 
-      .hero__title        { font-size: 20px; }
-      .self-card          { padding: 16px 20px 14px; }
-      .self-card__avatar  { font-size: 44px; }
-      .self-card__name    { font-size: 20px; }
-      .container          { padding: 0 12px; }
-      .list-item__name    { font-size: 13px; }
+      .hero__title  { font-size: 19px; }
+      .hero__desc   { font-size: 13px; }
+      .container    { padding: 0 10px; }
+      .self-wrap    { padding: 0 10px; margin-top: -38px; }
+      .self-card    { padding: 16px 14px 14px; }
+      .self-card__avatar { font-size: 44px; }
+      .self-card__name   { font-size: 19px; }
+      .self-card__hint   { font-size: 11px; }
+
+      .sec-head__title { font-size: 16px; }
+
+      .arabic        { font-size: 15px; }
+      .person-name   { font-size: 13px; }
+      .person-desc   { font-size: 11px; }
 
       .legend {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
       }
+
+      .list-card__head,
+      .dalil-card__head,
+      .dalil-card__body,
+      .def-card,
+      .note,
+      .hadith-card {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- ============================
+  <!-- ============================================================
        HERO
-       ============================ -->
+       ============================================================ -->
   <header class="hero">
     <div class="hero__circle hero__circle--1"></div>
     <div class="hero__circle hero__circle--2"></div>
     <div class="hero__circle hero__circle--3"></div>
     <div class="hero__inner">
-      <h1 class="hero__title">Знай, кто тебе махрам</h1>
+      <h1 class="hero__title">Махрам жана намахрам</h1>
       <p class="hero__desc">
-        Махрам — это близкий родственник, с которым запрещён брак.
-        Не махрам — человек, с которым необходимо соблюдать границы общения.
+        Исламда махрам жана намахрам түшүнүктөрү туугандык жана шарияттык байланыштарга карата
+        колдонулат. Бул түшүнүктөр адамдардын өз ара мамилесиндеги чек араларды аныктайт.
       </p>
     </div>
   </header>
 
   <main class="main">
 
-    <!-- ============================
-         SELF CARD
-         ============================ -->
+    <!-- ============================================================
+         "МЕН" КАРТОЧКАСЫ
+         ============================================================ -->
     <div class="self-wrap">
       <div class="self-card">
         <div class="self-card__avatar">🧕</div>
-        <div class="self-card__name">Я</div>
-        <div class="self-card__tags">
-          <span class="tag tag--green">Махрам</span>
-          <span class="tag tag--red">Не махрам</span>
-        </div>
+        <div class="self-card__name">Мен</div>
+        <p class="self-card__hint">
+          Ким махрам, ким намахрам экенин билип жүрүү — адеп жана шарият чек арасын
+          сактоого жардам берет.
+        </p>
       </div>
     </div>
 
-    <!-- ============================
-         CONTENT CONTAINER
-         ============================ -->
     <div class="container">
 
-      <!-- SECTIONS GRID -->
-      <div class="grid">
-
-        <!-- ========================
-             МАХРАМ
-             ======================== -->
-        <section class="card card--mahram">
-          <div class="card__head">
-            <div class="card__head-top">
-              <span class="dot dot--green"></span>
-              <h2 class="card__title">Махрам</h2>
-            </div>
-            <p class="card__subtitle">Брак с этими людьми запрещён навсегда</p>
+      <!-- ============================================================
+           1. МАХРАМ ДЕГЕН ЭМНЕ?
+           ============================================================ -->
+      <div class="section">
+        <div class="def-card">
+          <div class="def-card__title">
+            <span class="def-card__icon">📌</span>
+            Махрам деген эмне?
           </div>
-
-          <ul class="list">
-
-            <li class="list-item">
-              <span class="avatar avatar--green">👨</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Папа</span>
-                <span class="list-item__desc">Родной отец</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--green">👴</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Дедушка</span>
-                <span class="list-item__desc">Отец отца или матери</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--green">🧑</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Брат</span>
-                <span class="list-item__desc">Родной или единокровный</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--green">👦</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Сын</span>
-                <span class="list-item__desc">Родной сын</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--green">🧔</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Дядя по отцу</span>
-                <span class="list-item__desc">Брат отца</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--green">🧔</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Дядя по матери</span>
-                <span class="list-item__desc">Брат матери</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--green">👦</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Племянник — сын брата</span>
-                <span class="list-item__desc">Сын родного брата</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--green">👦</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Племянник — сын сестры</span>
-                <span class="list-item__desc">Сын родной сестры</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--green">👴</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Свёкор</span>
-                <span class="list-item__desc">Отец мужа</span>
-              </div>
-            </li>
-
-            <li class="list-item list-item--special">
-              <span class="avatar avatar--green">🤵</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Муж</span>
-                <span class="list-item__desc">Законный супруг по шариату</span>
-              </div>
-            </li>
-
-          </ul>
-        </section>
-
-        <!-- ========================
-             НЕ МАХРАМ
-             ======================== -->
-        <section class="card card--not-mahram">
-          <div class="card__head">
-            <div class="card__head-top">
-              <span class="dot dot--red"></span>
-              <h2 class="card__title">Не махрам</h2>
-            </div>
-            <p class="card__subtitle">Соблюдай исламские границы общения</p>
-          </div>
-
-          <ul class="list">
-
-            <li class="list-item">
-              <span class="avatar avatar--red">👨</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Муж тёти</span>
-                <span class="list-item__desc">Супруг тёти</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--red">🧑</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Кузен</span>
-                <span class="list-item__desc">Двоюродный брат</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--red">🤵</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Зять — муж сестры</span>
-                <span class="list-item__desc">Муж родной сестры</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--red">👨</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Брат мужа</span>
-                <span class="list-item__desc">Деверь — особая осторожность</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--red">👥</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Друзья семьи</span>
-                <span class="list-item__desc">Даже давние и уважаемые</span>
-              </div>
-            </li>
-
-            <li class="list-item">
-              <span class="avatar avatar--red">👤</span>
-              <div class="list-item__body">
-                <span class="list-item__name">Дальний родственник</span>
-                <span class="list-item__desc">С которым теоретически возможен брак</span>
-              </div>
-            </li>
-
-          </ul>
-
-          <div class="card__notice">
-            <span class="card__notice-icon">⚠️</span>
-            <p class="card__notice-text">
-              Пророк ﷺ предупредил: «Берегитесь от входа к женщинам». Деверь — смерть.
-            </p>
-          </div>
-
-        </section>
-
-      </div>
-
-      <!-- ============================
-           ВАЖНО ПОМНИТЬ
-           ============================ -->
-      <div class="note">
-        <div class="note__icon">📖</div>
-        <div class="note__body">
-          <h3 class="note__title">Важно помнить</h3>
-          <p class="note__text">
-            Если человек не входит в категорию махрам, с ним нужно соблюдать исламские
-            границы общения: скромность, уважение и осторожность.
+          <p class="def-card__text">
+            Махрам — бул никеге турууга шарият боюнча тыюу салынган жакын тууган.
+            Махрам адамдар менен айрым эрежелер жеңилдетилет.
+            Махрамдардын негизги тизмеси Куран жана хадистерде баяндалган.
           </p>
         </div>
       </div>
 
-      <!-- ============================
+      <!-- ============================================================
+           2. ДАЛИЛДЕР
+           ============================================================ -->
+      <div class="section">
+        <div class="sec-head">
+          <div class="sec-head__label">Исламдык негиз</div>
+          <div class="sec-head__title">Далилдер</div>
+        </div>
+
+        <div class="dalil-grid">
+
+          <!-- Далил 1 — Нур сүрөөсү -->
+          <div class="dalil-card">
+            <div class="dalil-card__head">
+              <div class="dalil-card__title">
+                <span class="dalil-card__title-icon">📖</span>
+                Курандан далил
+              </div>
+              <p class="dalil-card__subtitle">
+                Нур сүрөөсү, 31-аятта аялдар кимдердин алдында зыйнатын көрсөтө аларын баяндайт.
+              </p>
+            </div>
+            <div class="dalil-card__body">
+              <div class="arabic-quote">
+                <p class="arabic">وَلَا يُبْدِينَ زِينَتَهُنَّ إِلَّا لِبُعُولَتِهِنَّ ...</p>
+              </div>
+              <p class="dalil-card__explain">
+                Бул аятта күйөө, ата, кайната, уул, күйөөсүнүн уулдары, бир тууган агалар
+                жана инилер, ага-инилердин уулдары, эже-карындаштардын уулдары сыяктуу
+                адамдардын алдында аялга жеңилдик берилери айтылат.
+              </p>
+            </div>
+          </div>
+
+          <!-- Далил 2 — Ниса сүрөөсү -->
+          <div class="dalil-card">
+            <div class="dalil-card__head">
+              <div class="dalil-card__title">
+                <span class="dalil-card__title-icon">📜</span>
+                Нике тууралуу далил
+              </div>
+              <p class="dalil-card__subtitle">
+                Ниса сүрөөсү, 23-аятта никеге тыюу салынган жакын туугандар айтылган.
+              </p>
+            </div>
+            <div class="dalil-card__body">
+              <div class="arabic-quote">
+                <p class="arabic">حُرِّمَتْ عَلَيْكُمْ أُمَّهَاتُكُمْ وَبَنَاتُكُمْ ...</p>
+              </div>
+              <p class="dalil-card__explain">
+                Бул аятта эне, кыз, эже-карындаш, атанын жана эненин эже-карындаштары,
+                ага-ининин жана эже-карындаштын кыздары, сүт эне, сүт бир туугандар жана
+                башка никеге тыюу салынган адамдар айтылат.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============================================================
+           3 & 4. МАХРАМ БОЛГОН АДАМДАР (2 колонка на 768px+)
+           ============================================================ -->
+      <div class="mahram-grid">
+
+        <!-- 3. АЯЛ ҮЧҮН МАХРАМ БОЛГОН ЭРКЕКТЕР -->
+        <div class="mahram-grid__col">
+          <div class="sec-head">
+            <div class="sec-head__label">Жашыл = махрам</div>
+            <div class="sec-head__title">Аял үчүн махрам болгон эркектер</div>
+          </div>
+          <div class="list-card list-card--green">
+            <div class="list-card__head">
+              <div class="list-card__head-top">
+                <span class="dot dot--green"></span>
+                <span class="list-card__title">Махрам эркектер</span>
+              </div>
+              <p class="list-card__subtitle">Нике тыйылган — чек аралар жеңилдетилет</p>
+            </div>
+            <ul class="person-list">
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👨</span>
+                <div class="person-body">
+                  <span class="person-name">Атасы</span>
+                  <span class="person-desc">Биологиялык ата же сүт ата</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👴</span>
+                <div class="person-body">
+                  <span class="person-name">Чоң атасы / тай атасы</span>
+                  <span class="person-desc">Ата же эне тараптан чоң ата</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">🧑</span>
+                <div class="person-body">
+                  <span class="person-name">Агасы же иниси</span>
+                  <span class="person-desc">Бир тууган ага-ини</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👦</span>
+                <div class="person-body">
+                  <span class="person-name">Уулу</span>
+                  <span class="person-desc">Өз уулу</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👴</span>
+                <div class="person-body">
+                  <span class="person-name">Жолдошунун атасы</span>
+                  <span class="person-desc">Кайнатасы</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👦</span>
+                <div class="person-body">
+                  <span class="person-name">Жолдошунун уулу</span>
+                  <span class="person-desc">Өзү төрөбөгөн болсо да, күйөөсүнүн уулу</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👦</span>
+                <div class="person-body">
+                  <span class="person-name">Бир тууганынын уулу</span>
+                  <span class="person-desc">Ага-инисинин уулу</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👦</span>
+                <div class="person-body">
+                  <span class="person-name">Эже-карындашынын уулу</span>
+                  <span class="person-desc">Эжеси же карындашынын уулу</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">🧔</span>
+                <div class="person-body">
+                  <span class="person-name">Сүт ата жана сүт бир туугандар</span>
+                  <span class="person-desc">Сүт эмүү аркылуу пайда болгон махрамдык</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. ЭРКЕК ҮЧҮН МАХРАМ БОЛГОН АЯЛДАР -->
+        <div class="mahram-grid__col">
+          <div class="sec-head">
+            <div class="sec-head__label">Жашыл = махрам</div>
+            <div class="sec-head__title">Эркек үчүн махрам болгон аялдар</div>
+          </div>
+          <div class="list-card list-card--green">
+            <div class="list-card__head">
+              <div class="list-card__head-top">
+                <span class="dot dot--green"></span>
+                <span class="list-card__title">Махрам аялдар</span>
+              </div>
+              <p class="list-card__subtitle">Нике тыйылган — жакын туугандар</p>
+            </div>
+            <ul class="person-list">
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👩</span>
+                <div class="person-body">
+                  <span class="person-name">Апасы</span>
+                  <span class="person-desc">Биологиялык эне же сүт эне</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👵</span>
+                <div class="person-body">
+                  <span class="person-name">Чоң энеси / тай энеси</span>
+                  <span class="person-desc">Ата же эне тараптан чоң эне</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">🧕</span>
+                <div class="person-body">
+                  <span class="person-name">Эжеси же карындашы</span>
+                  <span class="person-desc">Бир тууган эже-карындаш</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👧</span>
+                <div class="person-body">
+                  <span class="person-name">Кызы</span>
+                  <span class="person-desc">Өз кызы</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👩</span>
+                <div class="person-body">
+                  <span class="person-name">Атасынын эжеси / карындашы</span>
+                  <span class="person-desc">Атанын эже же карындашы — таеже маанисинде</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👩</span>
+                <div class="person-body">
+                  <span class="person-name">Энесинин эжеси / сиңдиси</span>
+                  <span class="person-desc">Эне тараптагы эже-сиңди</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👵</span>
+                <div class="person-body">
+                  <span class="person-name">Жубайынын апасы</span>
+                  <span class="person-desc">Кайнене</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">🧕</span>
+                <div class="person-body">
+                  <span class="person-name">Уулунун аялы</span>
+                  <span class="person-desc">Келини</span>
+                </div>
+              </li>
+              <li class="person-item">
+                <span class="person-avatar person-avatar--green">👩</span>
+                <div class="person-body">
+                  <span class="person-name">Сүт эне жана сүт карындаштар</span>
+                  <span class="person-desc">Сүт эмүү аркылуу пайда болгон махрамдык</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <!-- /mahram-grid -->
+
+      <!-- ============================================================
+           5. НАМАХРАМ ДЕГЕН КИМ?
+           ============================================================ -->
+      <div class="section">
+        <div class="def-card def-card--red">
+          <div class="def-card__title">
+            <span class="def-card__icon">⚠️</span>
+            Намахрам деген ким?
+          </div>
+          <p class="def-card__text">
+            Намахрам — никеге турууга шарият боюнча мүмкүн болгон адам. Мындай
+            адамдар менен сүйлөшүүдө, жалгыз калууда жана мамиледе исламдык
+            чек аралар сакталат.
+          </p>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           6. НАМАХРАМ МИСАЛДАРЫ
+           ============================================================ -->
+      <div class="section">
+        <div class="sec-head">
+          <div class="sec-head__label">Кызыл = намахрам</div>
+          <div class="sec-head__title">Намахрам мисалдары</div>
+        </div>
+        <div class="list-card list-card--red">
+          <div class="list-card__head">
+            <div class="list-card__head-top">
+              <span class="dot dot--red"></span>
+              <span class="list-card__title">Намахрам адамдар</span>
+            </div>
+            <p class="list-card__subtitle">Булар менен исламдык чек аралар сакталат</p>
+          </div>
+          <ul class="person-list">
+            <li class="person-item">
+              <span class="person-avatar person-avatar--red">🧑</span>
+              <div class="person-body">
+                <span class="person-name">Кузен</span>
+                <span class="person-desc">Ата же эне тараптан тууган баласы</span>
+              </div>
+            </li>
+            <li class="person-item">
+              <span class="person-avatar person-avatar--red">👨</span>
+              <div class="person-body">
+                <span class="person-name">Жездеси</span>
+                <span class="person-desc">Эжесинин же карындашынын күйөөсү</span>
+              </div>
+            </li>
+            <li class="person-item">
+              <span class="person-avatar person-avatar--red">👦</span>
+              <div class="person-body">
+                <span class="person-name">Кайниси</span>
+                <span class="person-desc">Күйөөсүнүн бир тууган иниси</span>
+              </div>
+            </li>
+            <li class="person-item">
+              <span class="person-avatar person-avatar--red">👨</span>
+              <div class="person-body">
+                <span class="person-name">Күйөөсүнүн агасы</span>
+                <span class="person-desc">Күйөөсүнүн бир тууган агасы</span>
+              </div>
+            </li>
+            <li class="person-item">
+              <span class="person-avatar person-avatar--red">👨</span>
+              <div class="person-body">
+                <span class="person-name">Таежесинин күйөөсү</span>
+                <span class="person-desc">Туугандык бар, бирок махрам эмес</span>
+              </div>
+            </li>
+            <li class="person-item">
+              <span class="person-avatar person-avatar--red">👤</span>
+              <div class="person-body">
+                <span class="person-name">Алыскы тууган</span>
+                <span class="person-desc">Нике мүмкүн болгон тууган</span>
+              </div>
+            </li>
+            <li class="person-item">
+              <span class="person-avatar person-avatar--red">👥</span>
+              <div class="person-body">
+                <span class="person-name">Үй-бүлөнүн досу</span>
+                <span class="person-desc">Тууган болбосо, махрам эмес</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           7. СҮННӨТТӨН ЭСКЕРТҮҮ
+           ============================================================ -->
+      <div class="section">
+        <div class="sec-head">
+          <div class="sec-head__label">Пайгамбардын ﷺ хадисинен</div>
+          <div class="sec-head__title">Сүннөттөн эскертүү</div>
+        </div>
+        <div class="hadith-grid">
+
+          <div class="hadith-card">
+            <span class="hadith-card__icon">🕌</span>
+            <p class="hadith-card__text">
+              Махрамы жок аял сапарга чыкпайт. Күйөөсү же махрамы жок аял менен
+              эркек жалгыз калбайт.
+            </p>
+            <div class="hadith-card__ref">Бухари, 1862 &nbsp;·&nbsp; Муслим, 1341</div>
+          </div>
+
+          <div class="hadith-card">
+            <span class="hadith-card__icon">🕌</span>
+            <p class="hadith-card__text">
+              Бир эркек намахрам аял менен жалгыз калса, алардын үчүнчүсү — шайтан болот.
+            </p>
+            <div class="hadith-card__ref">Тирмизи, 2165</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============================================================
+           8. ЭСТЕП ЖҮР
+           ============================================================ -->
+      <div class="note">
+        <div class="note__icon">💚</div>
+        <div>
+          <h3 class="note__title">Эстеп жүр</h3>
+          <p class="note__text">
+            Эгер адам махрамдардын катарына кирбесе, анда аны менен мамиледе адеп,
+            скромность, урмат жана шарияттык чек ара сакталат.
+          </p>
+        </div>
+      </div>
+
+      <!-- ============================================================
            ЛЕГЕНДА
-           ============================ -->
+           ============================================================ -->
       <div class="legend">
         <div class="legend__item">
           <span class="legend__dot legend__dot--green"></span>
-          <span class="legend__text">Махрам — брак запрещён</span>
+          <span class="legend__text">Жашыл — махрам</span>
         </div>
         <div class="legend__item">
           <span class="legend__dot legend__dot--red"></span>
-          <span class="legend__text">Не махрам — соблюдай границы</span>
+          <span class="legend__text">Кызыл — намахрам</span>
         </div>
       </div>
 
@@ -765,7 +1130,7 @@
   </main>
 
   <footer class="footer">
-    <p>Знание своих родственных связей — основа исламского этикета общения</p>
+    <p>Туугандык байланышты билүү — шарияттык адептин негизи</p>
   </footer>
 
 </body>
